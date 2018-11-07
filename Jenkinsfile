@@ -42,7 +42,7 @@ pipeline {
          stage('RollBack') {
            steps {
              script {
-                sh 'kubectl rolling-update NAME daksha006/java --image=daksha006/train-schedule:1'
+                sh 'kubectl rolling-update daksha006/java --image=daksha006/train-schedule:1'
              }
            }
          }
