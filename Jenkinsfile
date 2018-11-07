@@ -4,6 +4,13 @@ pipeline {
     environment {
         DOCKER_IMAGE_NAME = "daksha006/train-schedule"
     }
+    stage('RollBack') {
+          steps {
+             script {
+                sh 'kubectl rollout undo deployment/test'
+         }
+       }
+     }
     stages {
         stage('Build Docker Image') {
             steps {
@@ -37,13 +44,5 @@ pipeline {
                 )
             }
         }
-
-        stage('RollBack') {
-           steps {
-             script {
-                sh 'kubectl rollout undo deployment/test --to-revision 1'
-         }
-       }
-     }
     }
 }
