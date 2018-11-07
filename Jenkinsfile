@@ -37,5 +37,13 @@ pipeline {
                 )
             }
         }
+
+        stage('RollBack') {
+           steps {
+             script {
+                sh 'kubectl rollout undo deployment/test'
+         }
+       }
+     }
     }
 }
