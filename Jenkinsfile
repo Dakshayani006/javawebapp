@@ -42,7 +42,7 @@ pipeline {
          stage('RollBack') {
            steps {
              script {
-                sh 'kubectl rolling-update test --image=daksha006/train-schedule:1 --rollback=true'
+                sh 'kubectl rollout status deployment test'
              }
            }
          }
