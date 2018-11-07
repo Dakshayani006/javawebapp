@@ -45,6 +45,7 @@ pipeline {
                 sh 'kubectl scale deployment test --replicas=5'
                 sh 'kubectl set image deployment/test  test=test:1'
                 sh 'kubectl rollout history deployment/test --revision=4'
+                sh 'kubectl rollout undo deployment/test'
 
              }
            }
