@@ -1,0 +1,37 @@
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: test
+spec:
+  ports:
+  - nodePort: 30902
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: test
+  type: LoadBalancer
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: test
+  labels:
+    app: test
+spec:
+  selector:
+    matchLabels:
+      app: test
+  template:
+    metadata:
+      labels:
+        app: test
+    spec:
+      containers:
+      - name: test
+        image: $DOCKER_IMAGE_NAME:$BUILD_NUMBER
+        ports:
+        - containerPort: 8080
