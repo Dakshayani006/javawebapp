@@ -42,7 +42,10 @@ pipeline {
          stage('RollBack') {
            steps {
              script {
-                sh 'kubectl rollout status deployment test'
+                sh 'kubectl scale deployment test --replicas=5'
+                sh 'kubectl set image deployment/test  test=test:1'
+                sh 'kubectl rollout history deployment/test --revision=4'
+
              }
            }
          }
