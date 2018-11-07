@@ -6,14 +6,6 @@ pipeline {
     }
 
     stages {
-      stage('RollBack') {
-          steps {
-             script {
-                sh 'kubectl rollout undo deployment/test'
-             }
-           }
-         }
-
         stage('Build Docker Image') {
             steps {
                 script {
@@ -46,5 +38,14 @@ pipeline {
                 )
             }
         }
+
+         stage('RollBack') {
+           steps {
+             script {
+                sh 'kubectl rolling-update NAME daksha006/java --image=daksha006/train-schedule:1'
+             }
+           }
+         }
+
     }
 }
