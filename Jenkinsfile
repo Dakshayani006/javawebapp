@@ -42,7 +42,7 @@ pipeline {
          stage('RollBack') {
            steps {
              script {
-                sh 'kubectl rolling-update test --rollback'
+                sh 'kubectl rollout test --rollback'
              }
            }
          }
