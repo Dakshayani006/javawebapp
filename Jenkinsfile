@@ -41,7 +41,7 @@ pipeline {
         stage('RollBack') {
            steps {
              script {
-                sh 'kubectl rollout undo deployment/test'
+                sh 'kubectl rollout undo deployment/test --to-revision 1'
          }
        }
      }
